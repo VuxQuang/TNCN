@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\LessonController;
 use App\Models\Lesson;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,3 +38,4 @@ Route::get('/', function () {
     // Truyền dữ liệu vào view 'welcome'
     return view('welcome', compact('lessons'));
 });
+Route::post('/submit-answer', [QuizController::class, 'submitAnswer']);

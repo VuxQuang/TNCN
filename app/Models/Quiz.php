@@ -9,5 +9,12 @@ class Quiz extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['question', 'wrong_answer1', 'wrong_answer2', 'wrong_answer3', 'correct_answer'];
+    protected $fillable = [
+        'question',
+        'wrong_answer1',
+        'wrong_answer2',
+        'wrong_answer3',
+        'correct_answer',
+        'video_id'
+    ];
 }
