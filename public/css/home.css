@@ -81,7 +81,7 @@ background-color: #42bbeb;
 .anss{
     display: flex;
     flex-wrap: wrap;
-    background-color: black;
+    background-color: white;
     width: 70%;
     justify-content: center;
 }

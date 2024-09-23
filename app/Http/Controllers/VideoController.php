@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Video;
@@ -26,16 +25,18 @@ class VideoController extends Controller
             // Trộn các đáp án
             shuffle($answers);
 
-            // Trả về dữ liệu quiz kèm theo các câu trả lời đã trộn
+            // Trả về dữ liệu quiz kèm theo các câu trả lời đã trộn và correct_answer
             return [
-                'question' => $quiz->question,
-                'answers'  => $answers,
+                'question'       => $quiz->question,
+                'answers'        => $answers,
+                'correct_answer' => $quiz->correct_answer, // Truyền thêm correct_answer
             ];
         });
 
         // Truyền dữ liệu vào view
         return view('video', compact('video', 'quizzes'));
     }
+
     public function submitAnswer(Request $request)
     {
         $answer = $request->input('answer');

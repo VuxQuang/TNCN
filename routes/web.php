@@ -10,12 +10,14 @@ use App\Models\Quiz;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\VocabularyController;
 use App\Models\Lesson;
 use Illuminate\Http\Request;
+use App\Http\Controllers\WelcomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -31,11 +33,12 @@ Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
 // Route cho cài đặt
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 
-Route::get('/', function () {
-    // Truy vấn tất cả các bài học từ bảng lessons
-    $lessons = Lesson::all();
+// Route::get('/', function () {
+//     // Truy vấn tất cả các bài học từ bảng lessons
+//     $lessons = Lesson::all();
 
-    // Truyền dữ liệu vào view 'welcome'
-    return view('welcome', compact('lessons'));
-});
+//     // Truyền dữ liệu vào view 'welcome'
+//     return view('welcome', compact('lessons'));
+// });
+Route::get('/', [WelcomeController::class, 'index']);
 Route::post('/submit-answer', [QuizController::class, 'submitAnswer']);
