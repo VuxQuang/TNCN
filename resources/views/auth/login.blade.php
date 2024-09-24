@@ -75,4 +75,16 @@
         </div>
     </div>
 </div>
+@if(session('message'))
+    <div class="alert alert-warning">
+        {{ session('message') }}
+    </div>
+@endif
+
+<!-- Form đăng nhập -->
+<form method="POST" action="{{ route('login') }}">
+    @csrf
+    <!-- Các trường đăng nhập -->
+</form>
+
 @endsection

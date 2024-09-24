@@ -28,7 +28,7 @@ class HomeController extends Controller
         $vocabulary = Vocabulary::inRandomOrder()->limit(10)->get();
         
         // Lấy tất cả bài học
-        $lessons = Lesson::all();
+        $lessons = Lesson::paginate(9);
         
         // Truyền dữ liệu vào view
         return view('welcome', compact('vocabulary', 'lessons'));

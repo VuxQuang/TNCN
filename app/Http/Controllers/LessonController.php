@@ -10,14 +10,14 @@ class LessonController extends Controller
     // Hiển thị tất cả các bài học trên trang welcome
     public function index()
     {
-        $lessons = Lesson::all();
+        $lessons = Lesson::paginate(9);
         return view('welcome', compact('lessons'));
     }
 
     // Hiển thị danh sách các bài học cho trang quản lý bài học (QlLesson)
     public function showLessonsForManagement()
     {
-        $lessons = Lesson::all();
+        $lessons = Lesson::paginate(9);
         return view('qlLesson', compact('lessons'));
     }
 

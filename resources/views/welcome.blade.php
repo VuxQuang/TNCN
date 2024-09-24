@@ -17,7 +17,6 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-
 </head>
 
 <body>
@@ -52,17 +51,39 @@
             <h1>Lessons</h1>
             <div class="lessons-view">
                 @foreach($lessons as $lesson)
-                    <a href="{{ url('video/'.$lesson->id) }}" class="lesson-card">
-                        <div class="lesson-card">
-                            <h1>{{ $lesson->title }}</h1> <!-- Hiển thị tiêu đề bài học -->
-                            <h2>{{ $lesson->description }}</h2> <!-- Hiển thị mô tả bài học -->
-                        </div>
-                    </a>
+                <a href="{{ url('video/'.$lesson->id) }}" class="lesson-cardx" data-auth="{{ Auth::check() ? 'true' : 'false' }}">
+                    <div class="lesson-card">
+                        <h1>{{ $lesson->title }}</h1> <!-- Hiển thị tiêu đề bài học -->
+                        <h2>{{ $lesson->description }}</h2> <!-- Hiển thị mô tả bài học -->
+                    </div>
+                </a>
+                
                 @endforeach
             </div>
         </div>
-        
+
+        <!-- Hiển thị phân trang -->
+        <div class="pagination-links">
+            {{ $lessons->links() }}
+        </div>
+    
     @endsection
     
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.lesson-cardx').forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                const isLoggedIn = link.getAttribute('data-auth') === 'true';
+                if (!isLoggedIn) {
+                    e.preventDefault(); // Ngăn chặn chuyển hướng
+                    alert('Bạn cần đăng nhập để xem bài học.'); // Hiển thị thông báo
+                    // Hoặc bạn có thể chuyển hướng đến trang đăng nhập như sau:
+                    // window.location.href = '{{ route('login') }}';
+                }
+            });
+        });
+    });
+</script>
+
 </html>

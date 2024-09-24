@@ -24,8 +24,11 @@
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Vinhongo') }}
             </a>
-            <a class="lesson" href="{{ url('/lessons') }}">
-                {{ __('Lessons') }}
+            <a class="lesson" href="{{ url('/qlLesson') }}">
+                @if(Auth::check() && Auth::user()->email === 'raijin2306@gmail.com')
+                    {{ __('Lessons') }}
+                @endif
+            </a>            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
