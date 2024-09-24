@@ -34,7 +34,7 @@ class GoogleController extends Controller
             return redirect()->route('qlLesson'); // Redirect to QlLesson.blade.php
         }
 
-        return redirect()->intended('home');
+        return redirect()->intended('welcome');
     } else {
         // Create a new user
         $newUser = User::updateOrCreate(
@@ -54,7 +54,7 @@ class GoogleController extends Controller
             return redirect()->route('qlLesson'); // Redirect to QlLesson.blade.php
         }
 
-        return redirect()->intended('home');
+        return redirect()->intended('welcome');
     }
 }
 
