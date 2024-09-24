@@ -21,7 +21,7 @@ use App\Http\Controllers\WelcomeController;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/auth/google', [App\Http\Controllers\GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback', [App\Http\Controllers\GoogleController::class, 'handleGoogleCallback'])->name('auth.google.callback');
@@ -42,3 +42,11 @@ Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 // });
 Route::get('/', [WelcomeController::class, 'index']);
 Route::post('/submit-answer', [QuizController::class, 'submitAnswer']);
+
+// CRUD routes for lesson management
+Route::get('/qlLesson', [LessonController::class, 'showLessonsForManagement'])->name('qlLesson');
+Route::get('/lessons/create', [LessonController::class, 'create'])->name('lessons.create');
+Route::post('/lessons', [LessonController::class, 'store'])->name('lessons.store');
+Route::get('/lessons/{lesson}/edit', [LessonController::class, 'edit'])->name('lessons.edit');
+Route::put('/lessons/{lesson}', [LessonController::class, 'update'])->name('lessons.update');
+Route::delete('/lessons/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
