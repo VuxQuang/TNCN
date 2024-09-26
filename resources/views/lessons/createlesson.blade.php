@@ -43,7 +43,7 @@
 
 <script>
     let quizIndex = 0;
-
+    
     document.getElementById('add-quiz-btn').addEventListener('click', function() {
         let container = document.getElementById('quizzes-container');
         let newQuiz = document.createElement('div');

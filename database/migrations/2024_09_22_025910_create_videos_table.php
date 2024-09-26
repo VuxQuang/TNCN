@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('url'); // URL của video
             $table->string('title'); // Tiêu đề của video
             $table->text('description')->nullable(); // Mô tả của video, có thể để trống
+            $table->text('lesson_id'); // Khóa ngoại liên kết với bảng lessons
             $table->timestamps(); // Tạo cột created_at và updated_at với kiểu dữ liệu datetime
         });
     }
