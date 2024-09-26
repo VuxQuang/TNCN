@@ -1,36 +1,70 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Quiz;
 use Illuminate\Http\Request;
+use App\Models\Video;
 
 class QuizController extends Controller
 {
     public function show($id)
     {
-        // Lấy các quiz liên quan đến video cụ thể
+        // Get quizzes related to the video
         $quizzes = Quiz::where('video_id', $id)->get();
 
-        // Kiểm tra và chuẩn bị dữ liệu
+        // Format the quizzes
         $formattedQuizzes = $quizzes->map(function ($quiz) {
-            $answers = [];
+            $answers = [
+                $quiz->answer1,
+                $quiz->answer2,
+                $quiz->answer3,
+                $quiz->answer4,
+            ];
 
-            // Kiểm tra và thêm các đáp án sai nếu có
-            if ($quiz->wrong_answer1) $answers[] = $quiz->wrong_answer1;
-            if ($quiz->wrong_answer2) $answers[] = $quiz->wrong_answer2;
-            if ($quiz->wrong_answer3) $answers[] = $quiz->wrong_answer3;
-            if ($quiz->correct_answer) $answers[] = $quiz->correct_answer;
-
-            shuffle($answers); // Trộn các đáp án
+            // Shuffle the answers
+            shuffle($answers);
 
             return [
                 'question' => $quiz->question,
                 'answers' => $answers,
-                'correct_answer' => $quiz->correct_answer, // Đảm bảo truyền đúng correct_answer
+                'correct_answer' => $quiz->correct_answer, // Pass correct answer index
             ];
         });
 
-        // Trả về view với dữ liệu
         return view('video', ['quizzes' => $formattedQuizzes, 'video' => $id]);
     }
+    // public function edit(Quiz $quiz)
+    // {
+    //     // Find the video associated with the quiz
+    //     $video = Video::findOrFail($quiz->video_id);
+    
+    //     // Retrieve all quizzes related to the video
+    //     $quizzes = Quiz::where('video_id', $video->id)->get();
+    
+    //     // Return the view with the required data
+    //     return view('quizzes.edit', compact('quiz', 'video', 'quizzes'));
+    // }
+    // public function update(Request $request, Quiz $quiz)
+    // {
+    //     // Validate dữ liệu
+    //     $request->validate([
+    //         'question' => 'required',
+    //         'answers' => 'required|array',
+    //         'correct_answer_index' => 'required|integer|between:0,3',
+    //     ]);
+
+    //     // Cập nhật thông tin quiz
+    //     $quiz->question = $request->question;
+    //     $quiz->answer1 = $request->answers[0];
+    //     $quiz->answer2 = $request->answers[1];
+    //     $quiz->answer3 = $request->answers[2];
+    //     $quiz->answer4 = $request->answers[3];
+    //     $quiz->correct_answer_index = $request->correct_answer_index;
+    //     $quiz->save();
+
+    //     return redirect()->route('quizzes.index')->with('success', 'Quiz updated successfully.');
+    // }
+
+
 }

@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $video->title }}</title>
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <!-- Include Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     @extends('layouts.app')
+
     @section('content')
     <h1>{{ $video->title }}</h1>
     <p>{{ $video->description }}</p>

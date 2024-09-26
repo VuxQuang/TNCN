@@ -20,4 +20,5 @@ class WelcomeController extends Controller
         // Truyền dữ liệu vào view
         return view('welcome', compact('vocabulary', 'lessons','isLoggedIn'));
     }
+    
 }
