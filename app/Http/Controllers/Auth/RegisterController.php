@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -69,4 +70,12 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+    protected function registered(Request $request, $user)
+{
+    // Đặt thông báo flash sau khi đăng ký thành công
+    session()->flash('register_success', 'Bạn đã đăng ký thành công!');
+    
+    return redirect($this->redirectPath());
+}
+
 }

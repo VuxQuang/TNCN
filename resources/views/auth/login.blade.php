@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="alert alert-danger" id="logout-success-notice" style="display: none;">
+    <p style="font-size: 25px;">{{ session('logout_success') }}</p>
+</div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -56,7 +59,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-
+                                <button type="submit" class="btn btn-primary">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </button>
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
@@ -86,5 +91,19 @@
     @csrf
     <!-- Các trường đăng nhập -->
 </form>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const logoutSuccessNotice = document.getElementById('logout-success-notice');
+
+        if (logoutSuccessNotice && logoutSuccessNotice.textContent.trim() !== '') {
+            logoutSuccessNotice.style.display = 'block';
+
+            // Ẩn thông báo sau 5 giây
+            setTimeout(function () {
+                logoutSuccessNotice.style.display = 'none';
+            }, 5000); // 5000ms = 5 giây
+        }
+    });
+</script>
 
 @endsection

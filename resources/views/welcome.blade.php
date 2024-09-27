@@ -31,7 +31,13 @@
         </p>
         <a class="nav-link noti" href="{{ route('login') }}">{{ __('Login') }}</a>
     </div>
-
+    <div class="alert alert-success" id="login-success-notice" style="display: none;">
+        <p style="font-size: 25px;">{{ session('login_success') }}</p>
+    </div>
+        <!-- Thông báo đăng ký thành công -->
+    <div class="alert alert-success" id="register-success-notice" style="display: none;">
+        <p style="font-size: 25px;">{{ session('register_success') }}</p>
+    </div>
     <div class="daily">
         <div class="tuvung">
             <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
@@ -96,6 +102,30 @@
                 }
             });
         });
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        const loginSuccessNotice = document.getElementById('login-success-notice');
+
+        if (loginSuccessNotice && loginSuccessNotice.textContent.trim() !== '') {
+            loginSuccessNotice.style.display = 'block';
+
+            // Ẩn thông báo sau 5 giây
+            setTimeout(function () {
+                loginSuccessNotice.style.display = 'none';
+            }, 5000); // 5000ms = 5 giây
+        }
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        const registerSuccessNotice = document.getElementById('register-success-notice');
+
+        if (registerSuccessNotice && registerSuccessNotice.textContent.trim() !== '') {
+            registerSuccessNotice.style.display = 'block';
+
+            // Ẩn thông báo sau 5 giây
+            setTimeout(function () {
+                registerSuccessNotice.style.display = 'none';
+            }, 5000); // 5000ms = 5 giây
+        }
     });
 </script>
 

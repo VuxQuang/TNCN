@@ -12,7 +12,7 @@ function startTimer() {
     setTimeout(() => {
         quizEnabled = true;
         enableQuizSubmission();
-    }, 120000); // 120000 milliseconds = 120 seconds
+    }, 0); // 120000 milliseconds = 120 seconds
 }
 
 // Enable quiz submission

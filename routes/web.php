@@ -25,7 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/auth/google', [App\Http\Controllers\GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback', [App\Http\Controllers\GoogleController::class, 'handleGoogleCallback'])->name('auth.google.callback');
-Route::get('/video/{lesson_id}', [VideoController::class, 'show'])->name('video.show');
+// Route::get('/video/{lesson_id}', [VideoController::class, 'show'])->name('video.show');
 
 
 Route::get('/quiz/{id}', [QuizController::class, 'show']);
@@ -52,6 +52,10 @@ Route::post('/lessons', [LessonController::class, 'store'])->name('lessons.store
 Route::get('/lessons/{lesson}/edit', [LessonController::class, 'edit'])->name('lessons.edit');
 Route::put('/lessons/{lesson}', [LessonController::class, 'update'])->name('lessons.update');
 Route::delete('/lessons/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
+
+Route::get('/video/{lessonId}', [VideoController::class, 'show']);
+Route::post('/submit-answer', [VideoController::class, 'submitAnswer'])->name('submit.answer');
+
 
 
 

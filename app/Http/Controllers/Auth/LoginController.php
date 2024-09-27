@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -37,4 +39,23 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
     }
+    public function authenticated(Request $request, $user)
+{
+    // Set the success message in the session
+    session()->flash('login_success', 'Đăng nhập thành công!');
+    return redirect()->intended($this->redirectPath());
+}
+public function logout(Request $request)
+{
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    // Đặt thông báo flash sau khi đăng xuất
+    session()->flash('logout_success', 'Bạn đã đăng xuất thành công!');
+    
+    return redirect('/login');
+}
+
+
 }
