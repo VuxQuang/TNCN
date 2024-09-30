@@ -14,6 +14,8 @@ use App\Http\Controllers\VocabularyController;
 use App\Models\Lesson;
 use Illuminate\Http\Request;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\VocabController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -55,8 +57,13 @@ Route::delete('/lessons/{lesson}', [LessonController::class, 'destroy'])->name('
 
 Route::get('/video/{lessonId}', [VideoController::class, 'show']);
 Route::post('/submit-answer', [VideoController::class, 'submitAnswer'])->name('submit.answer');
+Route::get('/account', [AccountController::class, 'index'])->name('account');
+Route::get('/vocab', [VocabController::class, 'index'])->name('vocab');
+Route::delete('/vocab/{id}', [VocabController::class, 'destroy'])->name('vocab.destroy');
+Route::put('/vocab/{id}', [VocabController::class, 'update'])->name('vocab.update');
+Route::post('/vocab', [VocabController::class, 'store'])->name('vocab.store');
 
-
+Route::delete('/account/{id}', [AccountController::class, 'destroy'])->name('account.destroy');
 
 
 
