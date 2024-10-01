@@ -22,7 +22,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Vinhongo') }}
+                {{ config('app.name', 'Vihongo') }}
             </a>
             @if(Auth::check() && Auth::user()->email === 'raijin2306@gmail.com')
             <a class="lesson" href="{{ url('/qlLesson') }}">
@@ -76,15 +76,15 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('profile') }}">
-                                    {{ __('Profile') }}
+                                    {{ __('Hồ Sơ') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('settings') }}">
-                                    {{ __('Settings') }}
+                                    {{ __('Cài đặt') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Đăng xuất') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
