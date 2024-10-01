@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ config('app.name', 'Vinhongo') }}</title>
+    <title>{{ config('app.name', 'Vihongo') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -22,7 +22,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Vinhongo') }}
+                {{ config('app.name', 'Vihongo') }}
             </a>
             @if(Auth::check() && Auth::user()->email === 'raijin2306@gmail.com')
             <a class="lesson" href="{{ url('/qlLesson') }}">
