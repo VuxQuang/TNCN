@@ -19,7 +19,7 @@ class GoogleController extends Controller
     try {
         $googleUser = Socialite::driver('google')->user();
     } catch (\Exception $e) {
-        return redirect()->route('login')->withErrors(['msg' => 'Unable to login using Google.']);
+        return redirect()->route('login')->withErrors(['msg' => 'Không thể đăng nhập bằng Google']);
     }
 
     // Find the user in the database

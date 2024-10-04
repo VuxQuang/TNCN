@@ -140,7 +140,7 @@ class LessonController extends Controller
             }
         }
     
-        return redirect()->route('qlLesson')->with('success', 'Lesson updated successfully');
+        return redirect()->route('qlLesson')->with('success', 'Cập nhật Lesson thành công!');
     }
     
 
@@ -161,6 +161,6 @@ class LessonController extends Controller
         // Xóa bài học
         $lesson->delete();
 
-        return redirect()->route('qlLesson')->with('success', 'Lesson, video, and quizzes deleted successfully.');
+        return redirect()->route('qlLesson')->with('success', 'Bài học, video và câu hỏi đã được xóa thành công');
     }
 }

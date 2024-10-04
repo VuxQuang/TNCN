@@ -1,0 +1,15 @@
+.card-header{
+    text-align: center;
+    font-size: 25px;
+
+}
+.card-body{
+    font-size: 20px;
+}
+.form-control {
+    width: 125%;
+    line-height: 2;
+}
+.row label{
+    text-align: center!important;
+}

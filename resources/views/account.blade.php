@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container account">
     <h1>Account Information</h1>
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>

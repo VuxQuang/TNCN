@@ -26,7 +26,10 @@
 
     <!-- Thẻ thông báo sẽ bị ẩn mặc định và chỉ hiện khi người dùng chưa đăng nhập -->
     <div class="notic" id="login-notice" style="display:none;">
-        <p style="font-size: 25px;">
+        <p style="font-size: 25px;
+    margin: 20px;
+    text-align: center;
+    width: 270px;">
             Bạn cần đăng nhập để xem bài học
         </p>
         <a class="nav-link noti" href="{{ route('login') }}">{{ __('Login') }}</a>

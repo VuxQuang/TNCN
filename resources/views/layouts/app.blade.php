@@ -17,6 +17,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -51,21 +52,29 @@
                     <li class="nav-item">
                         <form class="d-flex" action="{{ url('/search') }}" method="GET">
                             <input class="form-control me-2" type="search" name="query" placeholder="Tìm kiếm" aria-label="Search">
+                            
+                            <!-- Trường ẩn để biết trang tìm kiếm -->
+                            @if (Request::is('qlLesson'))
+                                <input type="hidden" name="page" value="qlLesson">
+                            @elseif (Request::is('vocab'))
+                                <input type="hidden" name="page" value="vocab">
+                            @endif
+                        
                             <button class="btn btn-outline-success" type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
-                        </form>
+                        </form>                        
                     </li>
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Đăng Nhập') }}</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Đăng Ký') }}</a>
                             </li>
                         @endif
                     @else

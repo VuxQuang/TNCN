@@ -22,7 +22,7 @@ class VocabController extends Controller
     public function destroy($id)
     {
         Vocabulary::destroy($id); // Xóa từ vựng theo ID
-        return redirect()->route('vocab')->with('success', 'Vocabulary deleted successfully.');
+        return redirect()->route('vocab')->with('success', 'Đã xóa từ vựng thành công');
     }
     public function update(Request $request, $id)
     {
@@ -36,7 +36,7 @@ class VocabController extends Controller
         $vocabulary->meaning = $request->meaning;
         $vocabulary->save();
 
-        return redirect()->route('vocab')->with('success', 'Vocabulary updated successfully.');
+        return redirect()->route('vocab')->with('success', 'Từ vựng được cập nhật thành công');
     }
     public function store(Request $request)
 {
@@ -51,7 +51,7 @@ class VocabController extends Controller
         'meaning' => $request->meaning,
     ]);
 
-    return redirect()->route('vocab')->with('success', 'Vocabulary added successfully.');
+    return redirect()->route('vocab')->with('success', 'Từ vựng được thêm thành công');
 }
 
 }

@@ -27,8 +27,13 @@
 .navbar{
 }
 .navbar-brand{
-    font-size: 25px;
+    font-size: 30px;
     color: black;
+    
+}
+.navbar-brand:hover{
+    color: rgb(10, 183, 137);
+    scale: 1.1;
 }
 .py-4{
     width: 100%;
@@ -43,7 +48,12 @@
     text-decoration: none;
     color: black;
     margin: 0px 20px;
+    &:hover{
+        color: rgb(10, 183, 137);
+        scale: 1.1;
+    }
 }
+
 .daily{
     display: flex;
     justify-content: center;
@@ -173,7 +183,7 @@
 .less-card{
     width: 25%;
     height: 200px;
-    background-color: #6bcbf1;
+    background-color: rgb(10, 183, 137);
     color: white;
     border-radius: 10px;
     text-align: center;
@@ -185,7 +195,8 @@
     text-decoration: none;
 }
 .less-card:hover{
-    background-color: #42bbeb;
+    background-color: rgb(10, 173, 129);
+    scale: 1.1;
 }
 .lessontitle{
     font-size: 35px;
@@ -220,4 +231,30 @@
 svg{
     width: 20px;
     height: 20px;
+}
+.vocab{
+    font-size: 20px;
+}
+.add_vocab{
+
+}
+.input-group {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 49%;
+    top: 70px;
+    left: 30%;
+    border: 2px solid black;
+    border-radius: 9px;
+}
+.account{
+    font-size: 20px;
+}
+input, button, select, optgroup, textarea {
+    border-radius: 6px;
+}
+.dropdown-item:hover{
+    background-color: rgb(10, 183, 137);
 }

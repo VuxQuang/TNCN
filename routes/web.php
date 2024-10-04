@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\VocabController;
-
+use App\Http\Controllers\SearchController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -66,4 +66,5 @@ Route::post('/vocab', [VocabController::class, 'store'])->name('vocab.store');
 Route::delete('/account/{id}', [AccountController::class, 'destroy'])->name('account.destroy');
 
 
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
