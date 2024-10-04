@@ -258,3 +258,117 @@ input, button, select, optgroup, textarea {
 .dropdown-item:hover{
     background-color: rgb(10, 183, 137);
 }
+/* video -quizz*/
+body {
+    font-family: Arial, sans-serif;
+}
+.lesson-quizz {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+.video-container {
+    margin-bottom: 20px;
+}
+.quiz-container {
+    position: relative;
+    width: 60%;
+    margin: auto;
+    max-width: 1000px;
+}
+.slide {
+    display: none;
+}
+.slide.active {
+    display: block;
+}
+.question {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.answers {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.answer {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: rgb(136, 205, 227);
+    width: 48%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    height: 100px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    &:hover {
+        background-color: rgb(10, 183, 137);
+        color: white;
+        scale: 1.1;
+        transition: 0.3s;
+    }
+}
+.answer.correct {
+    background-color: rgb(10, 183, 137);
+}
+.answer.incorrect {
+    background-color: rgb(235, 23, 23);
+}
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.nav-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.nav-button[disabled] {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+.results {
+    display: none;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 150px;
+    width: 500px;
+    background-color: lightskyblue;
+    position: absolute;
+    top: 0px;
+    right: 250px;
+}
+.question-number {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color:black;
+}
+#correct-count, #total-questions {
+    margin: 0 4px;
+}
+.nav-button{
+    &:hover{
+        background-color: rgb(10, 183, 137);
+        scale: 1.1;
+    }
+}
+p{
+    font-size: 30px;
+}
+#result-message{
+    font-size: 24px;
+}

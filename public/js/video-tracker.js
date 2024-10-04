@@ -1,89 +1,105 @@
-let correctCount = 0; 
-let answeredCount = 0; 
-const totalQuestions = document.querySelectorAll('.quiz').length;
-let timerStarted = false; // Flag to check if the timer has started
-let quizEnabled = false; // Flag to check if quiz is enabled
+document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.slide');
+    const totalQuestions = slides.length;
+    let currentSlide = 0;
+    let correctCount = 0;
+    let answeredQuestions = 0;
 
-// Function to start the timer
-function startTimer() {
-    if (timerStarted) return;
-    timerStarted = true;
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const questionNumber = document.getElementById('question-number');
 
-    setTimeout(() => {
-        quizEnabled = true;
-        enableQuizSubmission();
-    }, 0); // 120000 milliseconds = 120 seconds
-}
+    // Cập nhật tổng số câu hỏi trong phần hiển thị kết quả
+    document.getElementById('total-questions').textContent = totalQuestions;
 
-// Enable quiz submission
-function enableQuizSubmission() {
-    const quizElements = document.querySelectorAll('.ans');
-    quizElements.forEach(element => {
-        element.style.pointerEvents = 'auto'; // Enable click events
-        element.style.opacity = '1'; // Reset opacity
-    });
-    document.getElementById('enable-quiz').style.display = 'none'; // Hide button
-}
+    // Hiển thị slide đầu tiên
+    slides[currentSlide].classList.add('active');
+    updateQuestionNumber();
 
-// Disable quiz submission by default
-function disableQuizSubmission() {
-    const quizElements = document.querySelectorAll('.ans');
-    quizElements.forEach(element => {
-        element.style.pointerEvents = 'none'; // Disable click events
-        element.style.opacity = '0.5'; // Reduce opacity
-    });
-}
+    // Hàm hiển thị slide
+    function showSlide(n) {
+        slides[currentSlide].classList.remove('active');
+        slides[n].classList.add('active');
+        currentSlide = n;
+        updateQuestionNumber();
 
-// Run this on page load to prevent users from submitting answers prematurely
-disableQuizSubmission();
-startTimer(); // Start the timer when the page loads
-
-function submitAnswer(element, answer, question) {
-    if (!quizEnabled) {
-        alert("Bạn cần đợi ít nhất 2 phút để có thể làm quiz.");
-        return;
+        // Vô hiệu hoá/kích hoạt các nút điều hướng
+        prevBtn.disabled = currentSlide === 0;
+        nextBtn.disabled = currentSlide === totalQuestions - 1;
     }
 
-    const parentUl = element.closest('ul');
-    const allAnswers = parentUl.querySelectorAll('.ans');
-    allAnswers.forEach(ans => {
-        ans.style.pointerEvents = 'none';  // Disable clicks on all answers
-    });
-
-    const correctAnswer = element.closest('.card').dataset.correctAnswer;
-    if (answer === correctAnswer) {
-        correctCount++;
-        element.style.border = '5px solid green';
-    } else {
-        element.style.border = '5px solid red';
+    // Hàm cập nhật số thứ tự câu hỏi
+    function updateQuestionNumber() {
+        questionNumber.textContent = `Câu hỏi ${currentSlide + 1}/${totalQuestions}`;
     }
 
-    answeredCount++;
-    updateQuestionCounter(answeredCount, totalQuestions);
+    // Xử lý khi người dùng chọn câu trả lời
+    slides.forEach((slide, index) => {
+        const answers = slide.querySelectorAll('.answer');
+        const correctAnswer = slide.dataset.correctAnswer;
 
-    setTimeout(() => {
-        if (answeredCount === totalQuestions) {
-            showResult();
-            showCompletionMessage(); // Show completion message
-        } else {
-            const nextButton = document.querySelector('.carousel-control-next');
-            nextButton.click();
+        answers.forEach(answer => {
+            answer.addEventListener('click', function() {
+                // Ngăn chặn việc chọn lại câu trả lời
+                if (slide.classList.contains('answered')) return;
+
+                answeredQuestions++;
+
+                // Đánh dấu slide đã được trả lời
+                slide.classList.add('answered');
+
+                const selectedAnswer = this.textContent.trim();
+
+                // Kiểm tra câu trả lời đúng
+                if (selectedAnswer === correctAnswer) {
+                    this.classList.add('correct');
+                    correctCount++;
+                } else {
+                    this.classList.add('incorrect');
+                }
+
+                // Tự động chuyển sang slide tiếp theo sau 1 giây
+                setTimeout(() => {
+                    if (currentSlide < totalQuestions - 1) {
+                        showSlide(currentSlide + 1);
+                    }
+                    // Hiển thị kết quả sau khi hoàn thành tất cả các câu hỏi
+                    if (answeredQuestions === totalQuestions) {
+                        document.getElementById('correct-count').textContent = correctCount;
+                        document.getElementById('result-message').textContent = correctCount >= 0.6 * totalQuestions
+                            ? 'Chúc mừng! Bạn đã hoàn thành bài học.'
+                            : 'Bạn chưa hoàn thành bài học. Hãy thử lại!';
+                        document.querySelector('.results').style.display = 'flex';
+                    }
+                }, 1000);
+            });
+        });
+    });
+
+    // Sự kiện nút "Trước"
+    prevBtn.addEventListener('click', function() {
+        if (currentSlide > 0) {
+            showSlide(currentSlide - 1);
         }
-    }, 500);
-}
+    });
 
-function updateQuestionCounter(answered, total) {
-    const counterElement = document.getElementById('question-counter');
-    counterElement.textContent = `${answered}/${total}`;
-}
+    // Sự kiện nút "Tiếp theo"
+    nextBtn.addEventListener('click', function() {
+        if (currentSlide < totalQuestions - 1) {
+            showSlide(currentSlide + 1);
+        }
+    });
 
-function showResult() {
-    document.getElementById('correct-answers').innerText = correctCount;
-    document.getElementById('result').style.display = 'block';
-}
-
-function showCompletionMessage() {
-    const completionMessage = document.getElementById('completion-message');
-    completionMessage.innerHTML = `<h4>Chúc mừng! Bạn đã hoàn thành tất cả các câu hỏi. Tổng số câu đúng: ${correctCount} / ${totalQuestions}</h4>`;
-    completionMessage.style.display = 'block';
-}
+    // Sự kiện nút đóng
+    document.getElementById('close-btn').addEventListener('click', function() {
+        document.querySelector('.results').style.display = 'none';
+        // Đặt lại biến để bắt đầu lại bài quiz
+        currentSlide = 0;
+        correctCount = 0;
+        answeredQuestions = 0;
+        slides.forEach(slide => {
+            slide.classList.remove('answered', 'correct', 'incorrect');
+        });
+        showSlide(currentSlide);
+    });
+});
