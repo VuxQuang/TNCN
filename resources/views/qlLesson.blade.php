@@ -3,7 +3,7 @@
 
 @section('content')
     <h1>Lesson Management</h1>
-    <a href="{{ route('lessons.create') }}" class="btn btn-primary">Add Lesson</a>
+    <a href="{{ route('lessons.create') }}" class="btn btn-primary hover">Add Lesson</a>
 
     @if(session('success'))
         <div class="alert alert-success">

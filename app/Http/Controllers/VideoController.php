@@ -4,41 +4,52 @@ namespace App\Http\Controllers;
 use App\Models\Video;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
+use App\Models\Lesson;
 
 class VideoController extends Controller
 {
     public function show($lessonId)
-    {
-        // Fetch the video associated with the given lesson ID
-        $video = Video::where('lesson_id', $lessonId)->firstOrFail(); // Fetch video by lesson_id
-    
-        // Fetch quizzes related to the video using video_id
-        $quizzes = Quiz::where('video_id', $video->id)->get()->map(function ($quiz) {
-            // Create an array of answers
-            $answers = [
-                $quiz->wrong_answer1,
-                $quiz->wrong_answer2,
-                $quiz->wrong_answer3,
-                $quiz->correct_answer,
-            ];
-    
-            // Shuffle the answers
-            shuffle($answers);
-    
-            // Return quiz data with shuffled answers
-            return [
-                'question'       => $quiz->question,
-                'answers'        => $answers,
-                'correct_answer' => $quiz->correct_answer,
-            ];
-        });
-    
-        // Return the view with the video and quizzes data
-        return view('video', [
-            'video'   => $video,
-            'quizzes' => $quizzes,
-        ]);
-    }
+{
+    // Fetch the video associated with the given lesson ID
+    $video = Video::where('lesson_id', $lessonId)->firstOrFail();
+
+    // Fetch quizzes related to the video using video_id
+    $quizzes = Quiz::where('video_id', $video->id)->get()->map(function ($quiz) {
+        $answers = [
+            $quiz->wrong_answer1,
+            $quiz->wrong_answer2,
+            $quiz->wrong_answer3,
+            $quiz->correct_answer,
+        ];
+
+        shuffle($answers);
+
+        return [
+            'question'       => $quiz->question,
+            'answers'        => $answers,
+            'correct_answer' => $quiz->correct_answer,
+        ];
+    });
+
+    // Get next lesson ID
+    $nextLessonId = Lesson::where('id', '>', $lessonId)
+                           ->orderBy('id')
+                           ->pluck('id')
+                           ->first();
+
+    // Prepare the message if no next lesson exists
+    $noNextLessonMessage = !$nextLessonId ? 'Bạn đã hoàn thành tất cả bài học.' : '';
+
+    // Return the view with the video, quizzes, next lesson ID, and message
+    return view('video', [
+        'video'   => $video,
+        'quizzes' => $quizzes,
+        'nextLessonId' => $nextLessonId,
+        'noNextLessonMessage' => $noNextLessonMessage,
+    ]);
+}
+
+
     
     public function submitAnswer(Request $request)
     {
@@ -53,4 +64,6 @@ class VideoController extends Controller
             'correct' => $correct
         ]);
     }
+
+
 }

@@ -14,7 +14,7 @@
 
     @section('content')
     <h1>{{ $video->title }}</h1>
-    <p>{{ $video->description }}</p>
+    <h2>{{ $video->description }}</h2>
 
     <!-- Video display -->
     <div>
@@ -29,7 +29,7 @@
                 <div id="question-number" class="question-number">Câu hỏi 1/10</div> <!-- Hiển thị số thứ tự câu hỏi -->
     
                 @foreach($quizzes as $index => $quiz)
-                    <div class="slide" data-correct-answer="{{ $quiz['correct_answer'] }}">
+                    <div class="slides" data-correct-answer="{{ $quiz['correct_answer'] }}">
                         <div class="question">{{ $quiz['question'] }}</div>
                         <div class="answers">
                             @foreach($quiz['answers'] as $answer)
@@ -50,13 +50,21 @@
                     You got <span id="correct-count"></span> correct out of <span id="total-questions"></span> questions!
                     <p id="result-message"></p>
                     <span id="close-btn" style="cursor: pointer;font-weight: bold;position: absolute;right: 9px;"><i class="fa-solid fa-xmark"></i></span>
-                    <button></button>
+                    @if($nextLessonId)
+                    <a href="{{ url('video/' . $nextLessonId) }}" class="btn btn-primary hover">Học tiếp</a>
+                @endif
+                
+                @if($noNextLessonMessage)
+                    <div class="alert alert-warning" role="alert">
+                        {{ $noNextLessonMessage }}
+                    </div>
+                @endif
+                
                 </div>
             </div>
         </div>
     
     </body>
-
 
     @endsection
 </body>

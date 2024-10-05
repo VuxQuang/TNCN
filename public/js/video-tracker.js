@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const slides = document.querySelectorAll('.slide');
+    const slides = document.querySelectorAll('.slides');
     const totalQuestions = slides.length;
     let currentSlide = 0;
     let correctCount = 0;
@@ -103,3 +103,13 @@ document.addEventListener('DOMContentLoaded', function() {
         showSlide(currentSlide);
     });
 });
+document.getElementById('close-btn').addEventListener('click', function() {
+    // Tùy chọn để đóng thông báo
+    document.querySelector('.results').style.display = 'none';
+});
+
+// Thêm một nút để chuyển đến bài học tiếp theo
+document.querySelector('.results button').addEventListener('click', function() {
+    window.location.href = `http://127.0.0.1:8000/video/${nextLessonId}`;
+});
+

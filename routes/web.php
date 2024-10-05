@@ -56,6 +56,7 @@ Route::put('/lessons/{lesson}', [LessonController::class, 'update'])->name('less
 Route::delete('/lessons/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
 
 Route::get('/video/{lessonId}', [VideoController::class, 'show']);
+
 Route::post('/submit-answer', [VideoController::class, 'submitAnswer'])->name('submit.answer');
 Route::get('/account', [AccountController::class, 'index'])->name('account');
 Route::get('/vocab', [VocabController::class, 'index'])->name('vocab');
