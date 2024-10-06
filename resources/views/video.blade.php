@@ -19,14 +19,12 @@
     <!-- Video display -->
     <div>
         <iframe id="video-frame" width="1000" height="500" src="https://www.youtube.com/embed/{{ explode('v=', $video->url)[1] }}" frameborder="0" allowfullscreen></iframe>
-
     </div>
-
 
     <body>
         <div class="lesson-quizz">
             <div class="quiz-container">
-                <div id="question-number" class="question-number">Câu hỏi 1/10</div> <!-- Hiển thị số thứ tự câu hỏi -->
+                <div id="question-number" class="question-number">質問 1/10</div> <!-- Hiển thị số thứ tự câu hỏi -->
     
                 @foreach($quizzes as $index => $quiz)
                     <div class="slides" data-correct-answer="{{ $quiz['correct_answer'] }}">
@@ -41,25 +39,25 @@
     
                 <!-- Navigation buttons -->
                 <div class="navigation">
-                    <button class="nav-button" id="prevBtn" disabled>Previous</button>
-                    <button class="nav-button" id="nextBtn">Next</button>
+                    <button class="nav-button" id="prevBtn" disabled>前へ</button> <!-- Previous -->
+                    <button class="nav-button" id="nextBtn">次へ</button> <!-- Next -->
                 </div>
     
                 <!-- Results -->
                 <div class="results">
-                    You got <span id="correct-count"></span> correct out of <span id="total-questions"></span> questions!
+                    あなたは <span id="correct-count"></span> 正解しました / <span id="total-questions"></span> 問題中！ <!-- You got ... correct out of ... questions! -->
                     <p id="result-message"></p>
                     <span id="close-btn" style="cursor: pointer;font-weight: bold;position: absolute;right: 9px;"><i class="fa-solid fa-xmark"></i></span>
                     @if($nextLessonId)
-                    <a href="{{ url('video/' . $nextLessonId) }}" class="btn btn-primary hover">Học tiếp</a>
-                @endif
-                
-                @if($noNextLessonMessage)
-                    <div class="alert alert-warning" role="alert">
-                        {{ $noNextLessonMessage }}
-                    </div>
-                @endif
-                
+                    <a href="{{ url('video/' . $nextLessonId) }}" class="btn btn-primary hover">次のレッスンへ</a> <!-- Học tiếp -->
+                    @endif
+                    
+                    @if($noNextLessonMessage)
+                        <div class="alert alert-warning" role="alert">
+                            {{ $noNextLessonMessage }}
+                        </div>
+                    @endif
+                    
                 </div>
             </div>
         </div>

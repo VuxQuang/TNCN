@@ -2,19 +2,19 @@
 
 @section('content')
 <div class="container vocab">
-    <h1>Danh sách từ vựng</h1>
+    <h1>語彙管理</h1> 
     
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-    <button id="add-vocab-btn" class="btn btn-success">Thêm từ vựng</button>
+    <button id="add-vocab-btn" class="btn btn-success">語彙を追加</button> <!-- Thêm từ vựng -->
     <table class="table">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Từ vựng</th>
-                <th>Ý nghĩa</th>
-                <th>Chỉnh sửa</th>
+                <th>単語</th> <!-- Từ vựng -->
+                <th>意味</th> <!-- Ý nghĩa -->
+                <th>編集</th> <!-- Chỉnh sửa -->
             </tr>
         </thead>
         <tbody>
@@ -31,14 +31,14 @@
                             <input type="text" name="meaning" value="{{ $vocabulary->meaning }}" required>
                         </td>
                         <td>
-                            <button type="submit" class="btn btn-primary">Sửa</button>
+                            <button type="submit" class="btn btn-primary">修正</button> <!-- Sửa -->
                         </td>
                     </form>
                     <td>
                         <form action="{{ route('vocab.destroy', $vocabulary->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Xóa</button>
+                            <button type="submit" class="btn btn-danger">削除</button> <!-- Xóa -->
                         </form>
                     </td>
                 </tr>
@@ -54,9 +54,9 @@
         <form id="add-vocab-form" action="{{ route('vocab.store') }}" method="POST" style="display:none; margin-top: 20px;">
             @csrf
             <div class="input-group mb-3">
-                <input type="text" name="word" class="form-control" placeholder="Word" required>
-                <input type="text" name="meaning" class="form-control" placeholder="Meaning" required>
-                <button type="submit" class="btn btn-primary">Thêm</button>
+                <input type="text" name="word" class="form-control" placeholder="単語" required> <!-- Word -->
+                <input type="text" name="meaning" class="form-control" placeholder="意味" required> <!-- Meaning -->
+                <button type="submit" class="btn btn-primary">追加</button> <!-- Thêm -->
             </div>
         </form>
     </div>
@@ -101,7 +101,7 @@
                             }
                         });
                     } else {
-                        resultsContainer.append('<p>No results found</p>');
+                        resultsContainer.append('<p>結果が見つかりませんでした</p>'); // No results found
                     }
                 },
                 error: function(xhr, status, error) {

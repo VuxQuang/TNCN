@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Kết quả tìm kiếm</h1>
+        <h1>検索結果</h1>
 
         @if($page === 'qlLesson')
         <ul class="lessons-card">
@@ -11,11 +11,11 @@
                 <h3 class="lessontitle">{{ $lesson->title }}</h3>
                 <p class="lessond">{{ $lesson->description }}</p>
                 <div class="edit-dele">
-                    <a href="{{ route('lessons.edit', $lesson->id) }}" class="btn btn-warning edit-btn">Edit</a>
+                    <a href="{{ route('lessons.edit', $lesson->id) }}" class="btn btn-warning edit-btn">編集</a>
                     <form class="delete-form" action="{{ route('lessons.destroy', $lesson->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger delete-btn">Delete</button>
+                        <button type="submit" class="btn btn-danger delete-btn">削除</button>
                     </form>
                 </div>
             </li>
@@ -27,9 +27,9 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Từ vựng</th>
-                    <th>Ý nghĩa</th>
-                    <th>Chỉnh sửa</th>
+                    <th>語彙</th>
+                    <th>意味</th>
+                    <th>編集</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,14 +46,14 @@
                                 <input type="text" name="meaning" value="{{ $vocabulary->meaning }}" required>
                             </td>
                             <td>
-                                <button type="submit" class="btn btn-primary">Edit</button>
+                                <button type="submit" class="btn btn-primary">修正</button>
                             </td>
                         </form>
                         <td>
                             <form action="{{ route('vocab.destroy', $vocabulary->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger">削除</button>
                             </form>
                         </td>
                     </tr>

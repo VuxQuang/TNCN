@@ -73,7 +73,7 @@ class LessonController extends Controller
     }
 
     // Chuyển hướng người dùng về trang quản lý bài học với thông báo thành công
-    return redirect()->route('qlLesson')->with('success', 'Lesson, video, and quizzes created successfully');
+    return redirect()->route('qlLesson')->with('success', 'レッスン、ビデオ、およびクイズが正常に作成されました。');
 }
 
     // Hiển thị form chỉnh sửa bài học
@@ -140,7 +140,7 @@ class LessonController extends Controller
             }
         }
     
-        return redirect()->route('qlLesson')->with('success', 'Cập nhật Lesson thành công!');
+        return redirect()->route('qlLesson')->with('success', 'レッスンの更新に成功しました！');
     }
     
 
@@ -161,6 +161,6 @@ class LessonController extends Controller
         // Xóa bài học
         $lesson->delete();
 
-        return redirect()->route('qlLesson')->with('success', 'Bài học, video và câu hỏi đã được xóa thành công');
+        return redirect()->route('qlLesson')->with('success', 'レッスン、ビデオ、およびクイズは正常に削除されました。');
     }
 }

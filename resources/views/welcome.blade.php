@@ -26,18 +26,15 @@
 
     <!-- Thẻ thông báo sẽ bị ẩn mặc định và chỉ hiện khi người dùng chưa đăng nhập -->
     <div class="notic" id="login-notice" style="display:none;">
-        <p style="font-size: 25px;
-    margin: 20px;
-    text-align: center;
-    width: 270px;">
-            Bạn cần đăng nhập để xem bài học
+        <p style="font-size: 25px; margin: 20px; text-align: center; width: 270px;">
+            授業を見るにはログインする必要があります
         </p>
-        <a class="nav-link noti" href="{{ route('login') }}">{{ __('Login') }}</a>
+        <a class="nav-link noti" href="{{ route('login') }}">{{ __('ログイン') }}</a>
     </div>
     <div class="alert alert-success" id="login-success-notice" style="display: none;">
         <p style="font-size: 25px;">{{ session('login_success') }}</p>
     </div>
-        <!-- Thông báo đăng ký thành công -->
+    <!-- Thông báo đăng ký thành công -->
     <div class="alert alert-success" id="register-success-notice" style="display: none;">
         <p style="font-size: 25px;">{{ session('register_success') }}</p>
     </div>
@@ -54,18 +51,18 @@
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
+                    <span class="visually-hidden">前へ</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
+                    <span class="visually-hidden">次へ</span>
                 </button>
             </div>
         </div>
     </div>
 
     <div class="Lessons">
-        <h1>Lessons</h1>
+        <h1>レッスン</h1>
         <div class="lessons-view">
             @foreach($lessons as $lesson)
             <a href="{{ url('video/'.$lesson->id) }}" class="lesson-cardx" data-auth="{{ Auth::check() ? 'true' : 'false' }}">

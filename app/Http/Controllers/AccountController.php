@@ -16,6 +16,6 @@ class AccountController extends Controller
     public function destroy($id)
     {
         User::destroy($id); // Xóa người dùng theo ID
-        return redirect()->route('account')->with('success', 'Xóa người dùng thành công');
+        return redirect()->route('account')->with('success', 'ユーザーが正常に削除されました。');
     }
 }

@@ -27,15 +27,17 @@
             </a>
             @if(Auth::check() && Auth::user()->email === 'raijin2306@gmail.com')
             <a class="lesson" href="{{ url('/qlLesson') }}">
-                    {{ __('Lessons') }}
+                    {{ __('レッスン') }}
             </a>
             <a class="lesson" href="{{ url('/account') }}">
-                {{ __('Account') }}
+                {{ __('アカウント') }}
             </a>
             <a class="lesson" href="{{ url('/vocab') }}">
-                {{ __('Vocab') }}
+                {{ __('語彙') }}
             </a>
-            @endif            
+            @endif    
+            <a class="lesson" href="{{ asset('story.html') }}">物語</a>
+        
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -51,7 +53,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <form class="d-flex" action="{{ url('/search') }}" method="GET">
-                            <input class="form-control me-2" type="search" name="query" placeholder="Tìm kiếm" aria-label="Search">
+                            <input class="form-control me-2" type="search" name="query" placeholder="検索" aria-label="Search">
                             
                             <!-- Trường ẩn để biết trang tìm kiếm -->
                             @if (Request::is('qlLesson'))
@@ -68,13 +70,13 @@
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Đăng Nhập') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Đăng Ký') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('登録') }}</a>
                             </li>
                         @endif
                     @else
@@ -85,15 +87,15 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('profile') }}">
-                                    {{ __('Hồ Sơ') }}
+                                    {{ __('履歴書') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('settings') }}">
-                                    {{ __('Cài đặt') }}
+                                    {{ __('設定') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                    {{ __('Đăng xuất') }}
+                                    {{ __('ログアウト') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

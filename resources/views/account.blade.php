@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container account">
-    <h1>Account Information</h1>
+    <h1>アカウント管理</h1>
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -11,9 +11,9 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Action</th>
+                <th>名前</th>
+                <th>メール</th>
+                <th>アクション</th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +26,7 @@
                         <form action="{{ route('account.destroy', $user->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">削除</button>
                         </form>
                     </td>
                 </tr>

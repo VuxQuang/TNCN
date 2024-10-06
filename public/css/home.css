@@ -243,9 +243,9 @@ svg{
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
-    width: 49%;
-    top: 70px;
-    left: 30%;
+    width: 50%;
+    top: 62px;
+    left: 33%;
     border: 2px solid black;
     border-radius: 9px;
 }

@@ -2,8 +2,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Lesson Management</h1>
-    <a href="{{ route('lessons.create') }}" class="btn btn-primary hover">Add Lesson</a>
+    <h1>レッスン管理</h1>
+    <a href="{{ route('lessons.create') }}" class="btn btn-primary hover">レッスン追加</a>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -17,11 +17,11 @@
                 <h3 class="lessontitle">{{ $lesson->title }}</h3>
                 <p class="lessond">{{ $lesson->description }}</p>
                 <div class="edit-dele">
-                    <a href="{{ route('lessons.edit', $lesson->id) }}" class="btn btn-warning edit-btn">Edit</a>
+                    <a href="{{ route('lessons.edit', $lesson->id) }}" class="btn btn-warning edit-btn">修正</a>
                     <form class="delete-form" action="{{ route('lessons.destroy', $lesson->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger delete-btn">Delete</button>
+                        <button type="submit" class="btn btn-danger delete-btn">削除</button>
                     </form>
                 </div>
             </li>

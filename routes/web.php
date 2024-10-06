@@ -69,3 +69,6 @@ Route::delete('/account/{id}', [AccountController::class, 'destroy'])->name('acc
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
+Route::get('/story', function () {
+    return view('story.story');
+})->name('story.page');

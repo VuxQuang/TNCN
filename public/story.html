@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Reader - Home</title>
+    <link rel="stylesheet" href="story.css">
+</head>
+<body>
+    <header>
+        <a href="http://127.0.0.1:8000/" class="btn" style="text-decoration: none ;font-size: 25px; color: white;">Vihongo</a>
+        <h1>Story Reader</h1>
+        <div class="language-toggle">
+            <!-- Nếu có tùy chọn ngôn ngữ, bạn có thể thêm ở đây -->
+        </div>
+        
+    </header>
+
+    <!-- Nút quay lại -->
+    <div class="back-button">
+        
+    </div>
+
+    <main id="story-list">
+        <div class="story-item" data-id="story1">
+            <div class="story-overlay">
+                <h2 class="story-title">Tấm Cám</h2>
+            </div>
+            <img src="story_images/tamcam.jpg" alt="Story 1">
+        </div>
+        <div class="story-item" data-id="story2">
+            <div class="story-overlay">
+                <h2 class="story-title">Thánh Gióng</h2>
+            </div>
+            <img src="story_images/thanhgiong.jpg" alt="Story 2">
+        </div>
+        <div class="story-item" data-id="story3">
+            <div class="story-overlay">
+                <h2 class="story-title">Sọ Dừa</h2>
+            </div>
+            <img src="story_images/sodua.jpg" alt="Story 3">
+        </div>
+        <div class="story-item" data-id="story4">
+            <div class="story-overlay">
+                <h2 class="story-title">Thạch Sanh</h2>
+            </div>
+            <img src="story_images/thachsanh.jpg" alt="Story 4">
+        </div>
+        <div class="story-item" data-id="story5">
+            <div class="story-overlay">
+                <h2 class="story-title">Cây khế</h2>
+            </div>
+            <img src="story_images/caykhe.jpg" alt="Story 5">
+        </div>
+    </main>
+
+    <script src="story.js"></script>
+</body>
+</html>

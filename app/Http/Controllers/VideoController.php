@@ -38,7 +38,7 @@ class VideoController extends Controller
                            ->first();
 
     // Prepare the message if no next lesson exists
-    $noNextLessonMessage = !$nextLessonId ? 'Bạn đã hoàn thành tất cả bài học.' : '';
+    $noNextLessonMessage = !$nextLessonId ? 'すべてのレッスンを完了しました。' : '';
 
     // Return the view with the video, quizzes, next lesson ID, and message
     return view('video', [
