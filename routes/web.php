@@ -32,10 +32,14 @@ Route::get('/auth/google/callback', [App\Http\Controllers\GoogleController::clas
 
 Route::get('/quiz/{id}', [QuizController::class, 'show']);
 // Route cho hồ sơ
-Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile');
+Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
 
 // Route cho cài đặt
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+
+Route::post('/settings/save', [SettingsController::class, 'saveSettings'])->name('settings.save');
 
 // Route::get('/', function () {
 //     // Truy vấn tất cả các bài học từ bảng lessons
@@ -69,6 +73,3 @@ Route::delete('/account/{id}', [AccountController::class, 'destroy'])->name('acc
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
-Route::get('/story', function () {
-    return view('story.story');
-})->name('story.page');

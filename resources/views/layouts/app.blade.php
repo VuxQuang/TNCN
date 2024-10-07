@@ -89,7 +89,7 @@
                                 <a class="dropdown-item" href="{{ route('profile') }}">
                                     {{ __('履歴書') }}
                                 </a>
-                                <a class="dropdown-item" href="{{ route('settings') }}">
+                                <a class="dropdown-item" href="#" id="settings-btn">
                                     {{ __('設定') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -108,9 +108,56 @@
             </div>
         </div>
     </nav>
+<!-- Thẻ settings -->
+<!-- Thẻ settings -->
+<form id="settings-form" action="{{ route('settings.save') }}" method="POST">
+    <div id="settings-card" class="card" style="display: none; align-items: center; flex-wrap: wrap; position: absolute; z-index: 2; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 400px; border-radius: 30px; width: 500px;box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.146);">
+        <div class="card-header" style="background-color: white;">
+            設定
+        </div>
+        <div class="card-body" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; flex-direction: column; width: 100%; font-size: 25px; border-radius: 30px;">
+            <form id="settings-form" action="{{ route('settings.save') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="dark_theme">ダークテーマ</label>
+                    <input type="checkbox" id="dark_theme" name="dark_theme">
+                </div>
+
+                <div class="form-group" style="width: 59%;">
+                    <label for="language">言語</label>
+                    <select id="language" name="language" class="form-control">
+                        <option value="jp">日本語</option>
+                        <option value="vn">Tiếng Việt</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="daily_vocab">毎日の語彙数</label>
+                    <input type="number" id="daily_vocab" name="daily_vocab" value="{{ isset($dailyVocab) ? $dailyVocab : 10 }}" class="form-control" min="1">
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">保存</button>
+                    <button type="button" id="cancel-btn" class="btn btn-secondary">キャンセル</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</form>
+
 
     <main class="py-4">
         @yield('content')
     </main>
 </body>
+<script>
+    document.getElementById('settings-btn').addEventListener('click', function() {
+        document.getElementById('settings-card').style.display = 'flex';
+    });
+
+    document.getElementById('cancel-btn').addEventListener('click', function() {
+        document.getElementById('settings-card').style.display = 'none';
+    });
+</script>
+
 </html>

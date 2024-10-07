@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (answeredQuestions === totalQuestions) {
                         document.getElementById('correct-count').textContent = correctCount;
                         document.getElementById('result-message').textContent = correctCount >= 0.6 * totalQuestions
-                            ? 'Chúc mừng! Bạn đã hoàn thành bài học.'
-                            : 'Bạn chưa hoàn thành bài học. Hãy thử lại!';
+                            ? 'おめでとうございます！あなたはレッスンを完了しました。'
+                            : 'あなたはレッスンを完了していません。もう一度試してください！';
                         document.querySelector('.results').style.display = 'flex';
                     }
                 }, 1000);

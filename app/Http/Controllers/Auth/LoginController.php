@@ -42,7 +42,7 @@ class LoginController extends Controller
     public function authenticated(Request $request, $user)
 {
     // Set the success message in the session
-    session()->flash('login_success', 'Đăng nhập thành công!');
+    session()->flash('login_success', 'ログアウトに成功しました！');
     return redirect()->intended($this->redirectPath());
 }
 public function logout(Request $request)
@@ -52,7 +52,7 @@ public function logout(Request $request)
     $request->session()->regenerateToken();
 
     // Đặt thông báo flash sau khi đăng xuất
-    session()->flash('logout_success', 'Bạn đã đăng xuất thành công!');
+    session()->flash('logout_success', 'ログアウトに成功しました！');
     
     return redirect('/login');
 }

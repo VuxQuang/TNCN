@@ -80,7 +80,7 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
 {
     // Đặt thông báo flash sau khi đăng ký thành công
-    session()->flash('register_success', 'Bạn đã đăng ký thành công!');
+    session()->flash('register_success', '登録に成功しました！');
     
     return redirect($this->redirectPath());
 }
